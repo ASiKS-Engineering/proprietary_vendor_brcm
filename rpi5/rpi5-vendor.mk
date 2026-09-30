@@ -4,3 +4,7 @@
 
 PRODUCT_SOONG_NAMESPACES += \
     vendor/brcm/rpi5
+
+PRODUCT_COPY_FILES += \
+    vendor/brcm/rpi5/proprietary/vendor/firmware/hailo/README.android:$(TARGET_COPY_OUT_VENDOR)/firmware/hailo/README.android \
+    vendor/brcm/rpi5/proprietary/vendor/etc/hailo/models/README.android:$(TARGET_COPY_OUT_VENDOR)/etc/hailo/models/README.android

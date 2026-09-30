@@ -1,0 +1,7 @@
+Place Hailo model artifacts here.
+
+Expected contents once integrated:
+- default.hef
+- additional HEF models selected by the Android Hailo service
+
+This placeholder is copied into the vendor image to keep the target path present until the real model artifacts are added.

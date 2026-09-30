@@ -1,0 +1,14 @@
+Place Hailo firmware blobs for Raspberry Pi 5 here.
+
+Expected Hailo-8 filenames from the imported kernel driver:
+- hailo8_fw.bin
+- hailo8_board_cfg.bin
+- hailo8_fw_cfg.bin
+
+Target location inside Android:
+- /vendor/firmware/hailo/hailo8_fw.bin
+- /vendor/firmware/hailo/hailo8_board_cfg.bin
+- /vendor/firmware/hailo/hailo8_fw_cfg.bin
+
+The kernel driver requests these files via the firmware loader using the
+relative paths under `hailo/`.
