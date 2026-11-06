@@ -1,0 +1,5 @@
+# Hailo assets are fetched by rpi5/tools/*.ps1 and must not be committed.
+rpi5/proprietary/vendor/firmware/hailo/*.bin
+rpi5/proprietary/vendor/etc/hailo/models/*.hef
+rpi5/proprietary/vendor/lib64/libhailort.so
+*.download

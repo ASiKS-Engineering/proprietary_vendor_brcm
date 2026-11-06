@@ -8,3 +8,15 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_COPY_FILES += \
     vendor/brcm/rpi5/proprietary/vendor/firmware/hailo/README.android:$(TARGET_COPY_OUT_VENDOR)/firmware/hailo/README.android \
     vendor/brcm/rpi5/proprietary/vendor/etc/hailo/models/README.android:$(TARGET_COPY_OUT_VENDOR)/etc/hailo/models/README.android
+
+# Hailo assets that are fetched or built locally (see rpi5/tools); packaged only when present
+# so the image still builds without them.
+HAILO_VENDOR_SRC := vendor/brcm/rpi5/proprietary/vendor
+
+PRODUCT_COPY_FILES += \
+    $(foreach f,$(wildcard $(HAILO_VENDOR_SRC)/firmware/hailo/hailo8_*.bin), \
+        $(f):$(TARGET_COPY_OUT_VENDOR)/firmware/hailo/$(notdir $(f))) \
+    $(foreach f,$(wildcard $(HAILO_VENDOR_SRC)/etc/hailo/models/*.hef), \
+        $(f):$(TARGET_COPY_OUT_VENDOR)/etc/hailo/models/$(notdir $(f))) \
+    $(foreach f,$(wildcard $(HAILO_VENDOR_SRC)/lib64/libhailort.so), \
+        $(f):$(TARGET_COPY_OUT_VENDOR)/lib64/libhailort.so)
