@@ -17,6 +17,11 @@ PRODUCT_COPY_FILES += \
     $(foreach f,$(wildcard $(HAILO_VENDOR_SRC)/firmware/hailo/hailo8_*.bin), \
         $(f):$(TARGET_COPY_OUT_VENDOR)/firmware/hailo/$(notdir $(f))) \
     $(foreach f,$(wildcard $(HAILO_VENDOR_SRC)/etc/hailo/models/*.hef), \
-        $(f):$(TARGET_COPY_OUT_VENDOR)/etc/hailo/models/$(notdir $(f))) \
-    $(foreach f,$(wildcard $(HAILO_VENDOR_SRC)/lib64/libhailort.so), \
-        $(f):$(TARGET_COPY_OUT_VENDOR)/lib64/libhailort.so)
+        $(f):$(TARGET_COPY_OUT_VENDOR)/etc/hailo/models/$(notdir $(f)))
+
+# libhailort.so is an ELF prebuilt, which must not go through PRODUCT_COPY_FILES; it is
+# declared in Android.bp and only enabled when the library has been built.
+ifneq ($(wildcard $(HAILO_VENDOR_SRC)/lib64/libhailort.so),)
+$(call soong_config_set,hailo_vendor,has_libhailort,true)
+PRODUCT_PACKAGES += libhailort
+endif

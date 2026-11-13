@@ -5,3 +5,32 @@
 soong_namespace {
 }
 
+soong_config_module_type {
+    name: "hailo_cc_prebuilt_library_shared",
+    module_type: "cc_prebuilt_library_shared",
+    config_namespace: "hailo_vendor",
+    bool_variables: ["has_libhailort"],
+    properties: [
+        "enabled",
+        "srcs",
+    ],
+}
+
+// HailoRT 4.24.0 built by tools/build_hailort_android.sh (git-ignored).
+hailo_cc_prebuilt_library_shared {
+    name: "libhailort",
+    vendor: true,
+    compile_multilib: "64",
+    strip: {
+        none: true,
+    },
+    check_elf_files: false,
+    enabled: false,
+    soong_config_variables: {
+        has_libhailort: {
+            enabled: true,
+            srcs: ["proprietary/vendor/lib64/libhailort.so"],
+        },
+    },
+}
+
